@@ -10,6 +10,7 @@ import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 
@@ -33,6 +34,14 @@ public class crudresource {
 	public ArrayList<crudmodel>  getUser() throws SQLException {
 		
 		 return service.getUser();
+	}
+	
+	
+	@Path("/retrieveById/{id}")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public ArrayList<crudmodel>  getUser(@PathParam("id") int id) throws SQLException {
+		return service.getUserById(id);
 	}
 	
 }

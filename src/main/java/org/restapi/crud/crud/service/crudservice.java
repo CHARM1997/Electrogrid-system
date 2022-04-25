@@ -42,9 +42,7 @@ public class crudservice {
 		}catch(Exception e) {
 			System.out.println(e +"data insert unsuccess.");
 		}
-		
 		return user;
-		
 	}
 	
 		public ArrayList<crudmodel> getUser() throws SQLException{
@@ -61,12 +59,28 @@ public class crudservice {
 			model.setName(rs.getString("name")); // column name
 			model.setPass(rs.getInt("pass"));
 			
-			data.add(model);
-			
+			data.add(model);	
+		}	
+		return data;
 		}
 		
-		return data;
-	
+		
+		public ArrayList<crudmodel> getUserById(int id) throws SQLException{
+			
+			ArrayList<crudmodel> data = new ArrayList<crudmodel>();
+			String select = "select * from person where id =?";
+			PreparedStatement ps = con.prepareStatement(select);
+			ps.setInt(1,id);
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				crudmodel model = new crudmodel();
+				
+				model.setName(rs.getString("name")); // column name
+				model.setPass(rs.getInt("pass"));		
+				data.add(model);		
+			}		
+			return data;	
 		}
 	
 	
