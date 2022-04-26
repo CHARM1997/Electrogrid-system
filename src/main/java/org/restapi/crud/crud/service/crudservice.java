@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
 import org.restapi.crud.crud.model.crudmodel;
 
 public class crudservice {
@@ -83,7 +84,40 @@ public class crudservice {
 			return data;	
 		}
 	
-	
+		public crudmodel updatetUser(crudmodel user) {
+			String insert = "update person set name=? , age=? where id =?";
+			
+			try {
+				PreparedStatement ps = con.prepareStatement(insert);
+				//ps.setInt(1, user.getId());
+				ps.setString(1, user.getName());
+				ps.setLong(2, user.getPass());
+				ps.setInt(3, user.getId());
+				
+				ps.executeUpdate();
+			}catch(Exception e) {
+				System.out.println(e +"data insert unsuccess.");
+			}
+			
+			return user;
+			
+		}
+		
+		public int deletetUser(int id) {
+			String insert = "delete from person where id =?";
+			
+			try {
+				PreparedStatement ps = con.prepareStatement(insert);
+				ps.setInt(1,id);
+				
+				ps.executeUpdate();
+			}catch(Exception e) {
+				System.out.println(e +"data insert unsuccess.");
+			}
+			
+			return id;
+			
+		}
 	
 	
 	
