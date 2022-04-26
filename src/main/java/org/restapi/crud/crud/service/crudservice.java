@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
 import org.restapi.crud.crud.model.crudmodel;
 
 public class crudservice {
@@ -30,13 +31,13 @@ public class crudservice {
 			}
 
 	public crudmodel insertUser(crudmodel user) {
-		String insert = "insert into person(name,pass) values(?,?) ";
+		String insert = "insert into person(month,payment) values(?,?) ";
 		
 		
 		try {
 			PreparedStatement ps = con.prepareStatement(insert);
-			ps.setString(1, user.getName());
-			ps.setLong(2, user.getPass());
+			ps.setString(1, user.getMonth());
+			ps.setLong(2, user.getPayment());
 			
 			ps.execute();
 		}catch(Exception e) {
@@ -56,8 +57,8 @@ public class crudservice {
 		while(rs.next()) {
 			crudmodel model = new crudmodel();
 			
-			model.setName(rs.getString("name")); // column name
-			model.setPass(rs.getInt("pass"));
+			model.setMonth(rs.getString("month")); // column name
+			model.setPayment(rs.getInt("payment"));
 			
 			data.add(model);	
 		}	
@@ -76,14 +77,47 @@ public class crudservice {
 			while(rs.next()) {
 				crudmodel model = new crudmodel();
 				
-				model.setName(rs.getString("name")); // column name
-				model.setPass(rs.getInt("pass"));		
+				model.setMonth(rs.getString("month")); // column name
+				model.setPayment(rs.getInt("payment"));		
 				data.add(model);		
 			}		
 			return data;	
 		}
 	
-	
+		public crudmodel updatetUser(crudmodel user) {
+			String insert = "update person set month=? , payment=? where id =?";
+			
+			try {
+				PreparedStatement ps = con.prepareStatement(insert);
+				//ps.setInt(1, user.getId());
+				ps.setString(1, user.getMonth());
+				ps.setLong(2, user.getPayment());
+				ps.setInt(3, user.getId());
+				
+				ps.executeUpdate();
+			}catch(Exception e) {
+				System.out.println(e +"data insert unsuccess.");
+			}
+			
+			return user;
+			
+		}
+		
+		public int deletetUser(int id) {
+			String insert = "delete from person where id =?";
+			
+			try {
+				PreparedStatement ps = con.prepareStatement(insert);
+				ps.setInt(1,id);
+				
+				ps.executeUpdate();
+			}catch(Exception e) {
+				System.out.println(e +"data insert unsuccess.");
+			}
+			
+			return id;
+			
+		}
 	
 	
 	

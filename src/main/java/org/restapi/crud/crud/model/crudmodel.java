@@ -2,35 +2,53 @@ package org.restapi.crud.crud.model;
 
 public class crudmodel {
 	
-	private String name;
-	private int pass;
+	private int id;
+	private String month;
+	private int payment;
 	
 	
 	public crudmodel() {
 	}
-	
-	public crudmodel(String name, int pass) {
+
+
+	public crudmodel(int id, String month, int payment) {
 		super();
-		this.name = name;
-		this.pass = pass;
+		this.id = id;
+		this.month = month;
+		this.payment = payment;
 	}
 
-	public String getName() {
-		return name;
+
+	public int getId() {
+		return id;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public int getPass() {
-		return pass;
+
+	public String getMonth() {
+		return month;
 	}
 
-	public void setPass(int pass) {
-		this.pass = pass;
+
+	public void setMonth(String month) {
+		this.month = month;
+	}
+
+
+	public int getPayment() {
+		return payment;
+	}
+
+
+	public void setPayment(int payment) {
+		this.payment = payment;
 	}
 	
+
 	
 
 }
